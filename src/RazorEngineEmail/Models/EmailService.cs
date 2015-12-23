@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Inspired from https://gist.github.com/mzmsh/a1d226847374079e2ddb
+using System;
 using System.Net.Mail;
 using Microsoft.Extensions.Configuration;
 
