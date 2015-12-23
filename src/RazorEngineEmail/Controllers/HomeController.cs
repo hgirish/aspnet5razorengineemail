@@ -30,11 +30,13 @@ namespace RazorEngineEmail.Controllers
 
         public IActionResult About()
         {
-            var config = new TemplateServiceConfiguration();
-            config.Debug = true;
-            config.EncodedStringFactory = new RawStringFactory();
-            var service = RazorEngineService.Create(config);
-            Engine.Razor = service;
+            //var config = new TemplateServiceConfiguration();
+            //config.Debug = true;
+          
+            //config.EncodedStringFactory = new HtmlEncodedStringFactory();
+            //var service = RazorEngineService.Create(config);
+            
+            //Engine.Razor = service;
             var model = new UserModel {Name = "Sarah", Email = "sarah@eaxmaple.com", IsPremiumUser = false};
             var basePath = _appEnv.ApplicationBasePath;
             var templateFolderPath =Path.Combine(basePath,"Views/EmailTemplates");
@@ -43,8 +45,7 @@ namespace RazorEngineEmail.Controllers
             string template = "Hello @Model.Name, welcome to RazorEngine!";
           
              var result = Engine.Razor.RunCompile(emailString, "welcome", null, model);
-     //       var result =
-     //Engine.Razor.RunCompile(template, "templateKey", null, new { Name = "World" });
+
             ViewData["Message"] = result;
             _emailService.SendEmail("test@example.com","RazorEngine test",result);
             return View();
